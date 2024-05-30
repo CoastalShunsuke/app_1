@@ -104,7 +104,6 @@ PyQt5==5.15.10
 PyQt5-Qt5==5.15.2
 PyQt5-sip==12.13.0
 pytensor==2.20.0
-python-apt==2.4.0+ubuntu1
 python-dateutil==2.9.0.post0
 pytz==2024.1
 PyYAML==5.4.1
