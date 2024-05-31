@@ -34,6 +34,7 @@ def select_model():
     temperature = st.sidebar.slider("Temperature:", min_value=0.0, max_value=2.0, value=0.0, step=0.01)
 
     openai_api_key = os.getenv('OPENAI_API_KEY')
+    st.write(f"DEBUG: OPENAI_API_KEY is set to: {openai_api_key}")  # デバッグ用出力
     if not openai_api_key:
         st.error("OPENAI_API_KEY is not set.")
         return None
