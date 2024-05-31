@@ -31,11 +31,8 @@ def select_model():
     else:
         model_name = "gpt-4"
 
-    # スライダーを追加し、temperatureを0から2までの範囲で選択可能にする
-    # 初期値は0.0、刻み幅は0.01とする
     temperature = st.sidebar.slider("Temperature:", min_value=0.0, max_value=2.0, value=0.0, step=0.01)
 
-    # 環境変数からAPIキーを取得
     openai_api_key = os.getenv('OPENAI_API_KEY')
     if not openai_api_key:
         st.error("OPENAI_API_KEY is not set.")
@@ -57,7 +54,6 @@ def main():
 
     init_messages()
 
-    # ユーザーの入力を監視
     if user_input := st.chat_input("聞きたいことを入力してね！"):
         st.session_state.messages.append(HumanMessage(content=user_input))
         with st.spinner("ChatGPT is typing ..."):
