@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 31 09:17:32 2024
-
-@author: Owner
-"""
 
 [build-system]
 requires = ["setuptools>=42", "wheel", "Cython"]
