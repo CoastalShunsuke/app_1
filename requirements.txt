@@ -106,7 +106,7 @@ PyQt5-sip==12.13.0
 pytensor==2.20.0
 python-dateutil==2.9.0.post0
 pytz==2024.1
-PyYAML==5.4.1
+PyYAML==6.0
 referencing==0.35.1
 requests==2.32.2
 rich==13.7.1
