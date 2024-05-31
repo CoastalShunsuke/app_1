@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu May 30 14:49:11 2024
-
-@author: Owner
-"""
-
 import os
 import streamlit as st
 from langchain_community.chat_models import ChatOpenAI
