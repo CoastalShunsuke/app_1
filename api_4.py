@@ -1,9 +1,5 @@
 import os
 import streamlit as st
-
-# デバッグ用に環境変数を出力
-st.write(f"DEBUG: OPENAI_API_KEY is set to: {os.getenv('OPENAI_API_KEY')}")
-
 from langchain_community.chat_models import ChatOpenAI
 from langchain.schema import (
     SystemMessage,
@@ -58,4 +54,30 @@ def main():
 
     init_messages()
 
-    if user_input := st.cha
+    user_input = st.chat_input("聞きたいことを入力してね！")
+    if user_input:
+        st.session_state.messages.append(HumanMessage(content=user_input))
+        with st.spinner("ChatGPT is typing ..."):
+            answer, cost = get_answer(llm, st.session_state.messages)
+        st.session_state.messages.append(AIMessage(content=answer))
+        st.session_state.costs.append(cost)
+
+    messages = st.session_state.get('messages', [])
+    for message in messages:
+        if isinstance(message, AIMessage):
+            with st.chat_message('assistant'):
+                st.markdown(message.content)
+        elif isinstance(message, HumanMessage):
+            with st.chat_message('user'):
+                st.markdown(message.content)
+        else:  # isinstance(message, SystemMessage):
+            st.write(f"System message: {message.content}")
+
+    costs = st.session_state.get('costs', [])
+    st.sidebar.markdown("## Costs")
+    st.sidebar.markdown(f"**Total cost: ${sum(costs):.5f}**")
+    for cost in costs:
+        st.sidebar.markdown(f"- ${cost:.5f}")
+
+if __name__ == '__main__':
+    main()
